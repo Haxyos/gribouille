@@ -53,21 +53,46 @@ public class TP2App extends Application {
   private void prepareBoutons() {
     ajouteTout.setOnAction(this::onAjouteTout);
     retireTout.setOnAction(this::onRetireTout);
+    ajouteTout.setDisable(false);
+    versDroite.setOnAction(this::onAjouteUn);
+    versGauche.setOnAction(this::onRetireUn);
     // TODO actions des deux boutons centraux
+    
   }
 
+  private void onAjouteUn(ActionEvent actionEvent) {
+				int index = gauche.getSelectionModel().getSelectedIndex();
+				if (index != -1) {
+					droite.getItems().add(gauche.getItems().get(index));
+					gauche.getItems().remove(index);
+					droite.getSelectionModel().clearSelection();
+				}
+  }
+  
+  private void onRetireUn(ActionEvent actionEvent) {
+				int index = droite.getSelectionModel().getSelectedIndex();
+				if (index != -1) {
+					gauche.getItems().add(droite.getItems().get(index));
+					droite.getItems().remove(index);
+					gauche.getSelectionModel().clearSelection();
+				}
+			}
   /** Ajoute tous les éléments de gauche dans la liste de droite
    Active le bouton "Retirer tout" et désactive le bouton "Ajouter tout" */
   private void onAjouteTout(ActionEvent actionEvent) {
     droite.getItems().addAll(gauche.getItems());
     gauche.getItems().clear();
-    //TODO active/désactive les boutons
+    ajouteTout.setDisable(true);
+    retireTout.setDisable(false);
   }
 
   /** Ajoute tous les éléments de droite dans la liste de gauche
    Active le bouton "Ajouter tout" et désactive le bouton "Retirer tout" */
   private void onRetireTout(ActionEvent actionEvent) {
-    //TODO
+    gauche.getItems().addAll(droite.getItems());
+    droite.getItems().clear();
+    retireTout.setDisable(true);
+    ajouteTout.setDisable(false);
   }
 
   /** Prépare les menus et leurs événements */
@@ -107,7 +132,10 @@ public class TP2App extends Application {
    Active le bouton "Ajouter tout"
    */
   private void prepareListe() {
-    //TODO active le bouton "Ajouter tout"
+	String e1 = new String("Lukas");
+	String e2 = new String("pue");
+    gauche.getItems().add(e1);
+    gauche.getItems().add(e2);
   }
 
   private void extraitIds(Scene scene) {
