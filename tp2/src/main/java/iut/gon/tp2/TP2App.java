@@ -45,7 +45,13 @@ public class TP2App extends Application {
   /** Prépare la fenêtre pour demander confirmation avant fermeture */
   private void prepareFermeture(Stage stage) {
     stage.setOnCloseRequest(event -> {
-      //TODO confirmer ou consommer l'événement
+      Alert sorti = new Alert(AlertType.CONFIRMATION);
+      sorti.setContentText("Are you sure ?");
+      sorti.getButtonTypes().add(ButtonType.YES);
+      sorti.getButtonTypes().add(ButtonType.NO);
+      sorti.getButtonTypes().remove(0);
+      sorti.getButtonTypes().remove(0);
+      sorti.showAndWait();
     });
   }
 
@@ -56,7 +62,6 @@ public class TP2App extends Application {
     ajouteTout.setDisable(false);
     versDroite.setOnAction(this::onAjouteUn);
     versGauche.setOnAction(this::onRetireUn);
-    // TODO actions des deux boutons centraux
     
   }
 
