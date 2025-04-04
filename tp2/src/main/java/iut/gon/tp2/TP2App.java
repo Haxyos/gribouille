@@ -51,7 +51,9 @@ public class TP2App extends Application {
       sorti.getButtonTypes().add(ButtonType.NO);
       sorti.getButtonTypes().remove(0);
       sorti.getButtonTypes().remove(0);
-      sorti.showAndWait();
+      if (sorti.showAndWait().orElse(ButtonType.NO) == ButtonType.NO) {
+    	  event.consume();
+      };
     });
   }
 
