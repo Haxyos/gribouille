@@ -14,9 +14,13 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-
+    private GrilleModel model;
+    private static GrilleController controlleur;
+    
     @Override
     public void start(Stage stage) throws IOException {
+    	model = new GrilleModel();
+        controlleur = new GrilleController(model);
         scene = new Scene(loadFXML("sceneTp3"), 640, 480);
         stage.setScene(scene);
         stage.show();
@@ -28,6 +32,7 @@ public class App extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        fxmlLoader.setController(controlleur);
         return fxmlLoader.load();
     }
 

@@ -15,13 +15,18 @@ public class GrilleController implements Initializable{
 	private @FXML GridPane grille;
 	private Label label[][];
 	public static int max = 1000;
+	private GrilleModel model;
+	
+	public GrilleController(GrilleModel model) {
+		this.model = model;
+	}
 	
 	public void initialize(URL url, ResourceBundle resource){
 		this.label = new Label[3][3];
 		grille.setStyle("-fx-background-color: seashell");
 		for (int l = 0; l < 3; l++) {
 			for (int c = 0; c < 3; c++) {
-				label[l][c] = new Label(String.format("L%dC%d", l, c));
+				label[l][c] = new Label(model.getCase(l, c));
 				label[l][c].setMaxSize(max, max);
 				label[l][c].setAlignment(Pos.CENTER);
 				grille.add(label[l][c], c, l);
