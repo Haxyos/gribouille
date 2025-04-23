@@ -26,7 +26,7 @@ public class GrilleController implements Initializable{
 		grille.setStyle("-fx-background-color: seashell");
 		for (int l = 0; l < 3; l++) {
 			for (int c = 0; c < 3; c++) {
-				label[l][c] = new Label(model.getCase(l, c));
+				label[l][c] = new Label(model.getCase(l, c).getValue());
 				label[l][c].setMaxSize(max, max);
 				label[l][c].setAlignment(Pos.CENTER);
 				grille.add(label[l][c], c, l);
