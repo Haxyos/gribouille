@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,7 +23,10 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event-> {
-        	Alert sorti = new Alert()
+        	boolean conf = Dialogues.confirmation(stage);
+        	if (!conf) {
+        		event.consume();
+        	}
         });
     }
 
