@@ -32,7 +32,7 @@ public class App extends Application {
         		event.consume();
         	}
         });
-        dessin.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+        dessin.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
         	this.prevX = event.getX();
         	this.prevY = event.getY();
         });
