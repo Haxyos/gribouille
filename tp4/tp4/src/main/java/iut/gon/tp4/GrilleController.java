@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
@@ -71,9 +72,23 @@ public class GrilleController implements Initializable {
   }
 
   private void onGagne(String joueur) {
-    //TODO demander le nom du joueur
-    //TODO modifier scores
-    //TODO appeler la table des scores
+	  if (joueur == null) {
+		  this.table.ajouteNulle();
+		  return;
+	  }
+	  else {
+		  TextInputDialog text = new TextInputDialog();
+		  text.setContentText("Quel est le nom de l'heureux gagnant ? ");
+		  text.showAndWait();
+		  String result = text.getResult();
+		  this.table.ajouteVictoire(result);
+	  }
+	  try {
+		this.onMenuTable(null);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   @FXML
@@ -81,10 +96,13 @@ public class GrilleController implements Initializable {
     modele.nouvellePartie();
   }
   @FXML
-  public void onMenuTable(ActionEvent evt) {
+  public void onMenuTable(ActionEvent evt) throws IOException {
 	 FXMLLoader fxmlLoader = new FXMLLoader(Scores.class.getResource("table.fxml"));
+	 fxmlLoader.load();
+	 Parent root = fxmlLoader.getRoot();
 	 TableController controller = fxmlLoader.getController();
 	 controller.setScores(table);
+	 grille.getScene().setRoot(root);
   }
 
   @FXML

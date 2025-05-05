@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +21,6 @@ public class TableController {
 
 
   public void onFermer(ActionEvent event) {
-    //TODO appeler la grille
   }
 
   public void onReinit(ActionEvent event) {
