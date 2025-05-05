@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-      <MenuBar fx:id="menus" BorderPane.alignment="CENTER">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+      <MenuBar fx:id="menus" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" Controller="iut.gon.tp4.MenusController">
         <menus>
           <Menu mnemonicParsing="false" text="Jeu">
             <items>

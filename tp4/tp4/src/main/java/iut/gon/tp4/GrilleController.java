@@ -33,6 +33,7 @@ public class GrilleController implements Initializable {
   private @FXML GridPane grille;
   private @FXML HBox statut;
   private @FXML Label joueur;
+  private @FXML MenusController menusController;
 
   private Label[][] contenu = new Label[3][3];
 
@@ -40,6 +41,8 @@ public class GrilleController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     grille.setStyle("-fx-background-color: seashell");
+    menusController = new MenusController();
+    menusController.setParams(modele, table);
     for (int l=0; l<3; ++l)
       for (int c=0; c<3; ++c) {
         Label label =new Label();
@@ -84,29 +87,12 @@ public class GrilleController implements Initializable {
 		  this.table.ajouteVictoire(result);
 	  }
 	  try {
-		this.onMenuTable(null);
+		menusController.onMenuTable(null);
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
   }
 
-  @FXML
-  public void onMenuNouvelle(ActionEvent evt) {
-    modele.nouvellePartie();
-  }
-  @FXML
-  public void onMenuTable(ActionEvent evt) throws IOException {
-	 FXMLLoader fxmlLoader = new FXMLLoader(Scores.class.getResource("table.fxml"));
-	 fxmlLoader.load();
-	 Parent root = fxmlLoader.getRoot();
-	 TableController controller = fxmlLoader.getController();
-	 controller.setScores(table);
-	 grille.getScene().setRoot(root);
-  }
-
-  @FXML
-  public void onMenuQuitter(ActionEvent evt) {
-    Platform.exit();
-  }
+  
 }
