@@ -31,7 +31,7 @@
       </GridPane>
    </center>
    <top>
-       <fx:include source="menus.fxml" fx:id="menus"/>
+       <fx:include source="menus.fxml" fx:id="menus">
    </top>
     <bottom>
         <HBox fx:id="statut" alignment="CENTER">

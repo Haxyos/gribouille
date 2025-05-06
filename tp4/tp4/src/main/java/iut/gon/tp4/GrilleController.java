@@ -41,7 +41,6 @@ public class GrilleController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     grille.setStyle("-fx-background-color: seashell");
-    menusController = new MenusController();
     menusController.setParams(modele, table);
     for (int l=0; l<3; ++l)
       for (int c=0; c<3; ++c) {
