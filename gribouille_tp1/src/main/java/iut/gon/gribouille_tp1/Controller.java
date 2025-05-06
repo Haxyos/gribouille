@@ -74,6 +74,7 @@ public class Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		canvas.heightProperty().bind(interfaceCanva.heightProperty());
 		canvas.widthProperty().bind(interfaceCanva.widthProperty());
+		
 	}
 	
 	public void onMousePressed(MouseEvent evt) {
