@@ -138,7 +138,7 @@
    <center>
       <Pane fx:id="interfaceCanva" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Canvas fx:id="canvas" height="355.0" width="516.0" />
+            <Canvas onMousePressed="#onMousePressed" onMouseDragged="#onMouseDragged" fx:id="canvas" height="355.0" width="516.0" />
          </children>
       </Pane>
    </center>

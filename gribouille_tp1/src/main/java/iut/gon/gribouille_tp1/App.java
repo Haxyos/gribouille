@@ -32,16 +32,6 @@ public class App extends Application {
         		event.consume();
         	}
         });
-        dessin.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-        	this.prevX = event.getX();
-        	this.prevY = event.getY();
-        });
-        dessin.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-        	dessin.getGraphicsContext2D().strokeLine(prevX, prevY, event.getX(), event.getY());
-        	this.prevX = event.getX();
-        	this.prevY = event.getY();
-        });
-        
     }
 
     static void setRoot(String fxml) throws IOException {

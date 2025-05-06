@@ -9,12 +9,16 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
 public class Controller implements Initializable{
 
+	private double prevX;
+	private double prevY;
+	
     @FXML
     private BorderPane borderPane;
 
@@ -70,6 +74,17 @@ public class Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		canvas.heightProperty().bind(interfaceCanva.heightProperty());
 		canvas.widthProperty().bind(interfaceCanva.widthProperty());
+	}
+	
+	public void onMousePressed(MouseEvent evt) {
+		this.prevX = evt.getX();
+    	this.prevY = evt.getY();
+	}
+	
+	public void onMouseDragged(MouseEvent evt) {
+		canvas.getGraphicsContext2D().strokeLine(prevX, prevY, evt.getX(), evt.getY());
+    	this.prevX = evt.getX();
+    	this.prevY = evt.getY();
 	}
 
 }
