@@ -46,36 +46,35 @@ public class ControleurDemineur implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.modele = new ModeleDemineur(0, 0, 0);
+		nbMarques.setText(String.valueOf(modele.getNbMarques()));
+		nbInconnue.setText(String.valueOf(modele.getNbInconnues()));
 		difficulter.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
 				if(difficulter.getSelectedToggle() != null) {
-					String[] tab = initGrille(difficulter.getSelectedToggle().getUserData());
-					modele = new ModeleDemineur(Integer.parseInt(tab[0]), Integer.parseInt(tab[1]), Integer.parseInt(tab[2]));
-					nbMarques.setText(String.valueOf(modele.getNbMarques()));
-					nbInconnue.setText(String.valueOf(modele.getNbInconnues()));
-					
-					
+					initGrille(difficulter.getSelectedToggle().getUserData());		
 				}
 				
 			}
 			
 		});
-		nbMarques.setText(String.valueOf(modele.getNbMarques()));
-		nbInconnue.setText(String.valueOf(modele.getNbInconnues()));
 		
 	}
 	
-	public String[] initGrille(Object userData) {
+	public void initGrille(Object userData) {
 		gridPane.getColumnConstraints().clear();
 		gridPane.getRowConstraints().clear();
-		gridPane.getColumnConstraints().addAll(new ColumnConstraints(32));
-		gridPane.getRowConstraints().addAll(new RowConstraints(32));
-		String userDataString = (String)userData;
-		String[] tab;
-		tab = userDataString.split(";");
-		return tab;
+		int tab[] = ModeleDemineur.parseUserData((String)userData);
+		modele = new ModeleDemineur(tab[0],tab[1],tab[2]);
+		nbMarques.setText(String.valueOf(modele.getNbMarques()));
+		nbInconnue.setText(String.valueOf(modele.getNbInconnues()));
+		for (int i = 0; i < tab[1]; i++) {
+			gridPane.getRowConstraints().add(new RowConstraints(32));
+		}
+		for (int j = 0; j < tab[0]; j++) {
+			gridPane.getColumnConstraints().add(new ColumnConstraints(32));
+		}
 	}
 
 }
