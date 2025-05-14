@@ -1,5 +1,6 @@
 package fr.unicaen.iut.tp5;
 
+import java.awt.Insets;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,14 +10,19 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 
 public class ControleurDemineur implements Initializable{
 
@@ -59,6 +65,21 @@ public class ControleurDemineur implements Initializable{
 			}
 			
 		});
+		
+		
+		Background inconnue = new Background(new BackgroundFill(Color.AQUA, new CornerRadii(20), null));
+		Background libre = new Background(new BackgroundFill(Color.LIGHTGRAY,null, null));
+		Background echec = new Background(new BackgroundFill(Color.RED, null, null));
+		Background marquer = new Background(new BackgroundFill(Color.LEMONCHIFFON, null, null));
+		
+		for(int l = 0; l < gridPane.getHeight(); l++) {
+			for (int c = 0; c < gridPane.getWidth(); c++) {
+				Label label = new Label();
+				label.setText("?");
+				label.setBackground(inconnue);
+				label.setTextAlignment(TextAlignment.CENTER);
+			}
+		}
 		
 	}
 	
