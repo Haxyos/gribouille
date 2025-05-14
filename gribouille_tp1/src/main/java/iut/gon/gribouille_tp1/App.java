@@ -24,6 +24,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("CadreGribouille"), 640, 480);
         Canvas dessin = (Canvas) scene.lookup("Canvas");
+        
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event-> {
@@ -41,6 +42,8 @@ public class App extends Application {
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+        fxmlLoader.getController();
+        
     }
 
     public static void main(String[] args) {

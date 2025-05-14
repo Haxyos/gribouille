@@ -70,6 +70,10 @@ public class Controller implements Initializable{
     @FXML
     private Canvas canvas;
 
+    public void setDessin(Canvas dessin) {
+    	this.canvas = dessin;
+    }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		canvas.heightProperty().bind(interfaceCanva.heightProperty());
