@@ -103,24 +103,7 @@ public class Controller implements Initializable{
 	}
 	
 	public void redessine() {
-		canvas.widthProperty().addListener(new ChangeListener<>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				canvas.getGraphicsContext2D().strokeLine(prevX, prevY, trace.getPoints().get(0).getX(), trace.getPoints().get(0).getY());
-				
-			}
-			;
-		});
-		canvas.heightProperty().addListener(new ChangeListener<>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				canvas.getGraphicsContext2D().strokeLine(prevX, prevY, trace.getPoints().get(0).getX(), trace.getPoints().get(0).getY());
-				
-			}
-			;
-		});
+		canvas
 	}
 
 }
