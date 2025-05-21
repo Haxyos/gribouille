@@ -108,22 +108,25 @@ public class Controller implements Initializable{
 		});
 	}
 	
+	public void onMouseMoved(MouseEvent evt) {
+		prevX = evt.getSceneX();
+		prevY = evt.getSceneY();
+		nbX.setText(prevX+"");
+		nbY.setText(prevY+"");
+	}
+	
 	public void onMousePressed(MouseEvent evt) {
 		this.prevX = evt.getX();
     	this.prevY = evt.getY();
-    	this.trace = new Trace(1, "black", prevX, prevX);
+    	this.trace = new Trace(1, "black", prevX, prevY);
     	dessin.addFigure(trace);
-    	
 	}
 	
 	public void onMouseDragged(MouseEvent evt) {
 		canvas.getGraphicsContext2D().strokeLine(prevX, prevY, evt.getX(), evt.getY());
+    	trace.addPoint(evt.getX(), evt.getY());
     	this.prevX = evt.getX();
     	this.prevY = evt.getY();
-    	trace.addPoint(prevX, prevY);
-    	dessin.addFigure(trace);
-    	
-    	
 	}
 	
 	public void redessine() {
@@ -132,11 +135,12 @@ public class Controller implements Initializable{
 		for (int l = 0; l < figures.size(); l++) {
 			List<Point> point = figures.get(l).getPoints();
 			for (int c = 0; c < point.size()-1; c++) {
-				Point point1 = figures.get(c).getPoints().get(c);
-				Point point2 = figures.get(c).getPoints().get(c+1);
+				Point point1 = point.get(c);
+				Point point2 = point.get(c+1);
 				canvas.getGraphicsContext2D().strokeLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
 			}
 		}
 	}
+	
 
 }
