@@ -25,6 +25,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
     	Dessin dessin = new Dessin();
+    	stage.setTitle(dessin.getNomDuFichier());
         scene = new Scene(loadFXML("CadreGribouille", dessin), 640, 480);
         stage.setScene(scene);
         stage.show();

@@ -1,12 +1,16 @@
 package iut.gon.gribouille_tp1;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import iut.gon.gribouille_tp1.modele.Dessin;
+import iut.gon.gribouille_tp1.modele.Figure;
+import iut.gon.gribouille_tp1.modele.Point;
 import iut.gon.gribouille_tp1.modele.Trace;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -84,6 +88,24 @@ public class Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		canvas.heightProperty().bind(interfaceCanva.heightProperty());
 		canvas.widthProperty().bind(interfaceCanva.widthProperty());
+		canvas.heightProperty().addListener(new ChangeListener<Object>() {
+
+			@Override
+			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+				redessine();
+				
+			}
+			
+		});
+		canvas.widthProperty().addListener(new ChangeListener<Object>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
+				redessine();
+				
+			}
+			
+		});
 	}
 	
 	public void onMousePressed(MouseEvent evt) {
@@ -103,7 +125,15 @@ public class Controller implements Initializable{
 	}
 	
 	public void redessine() {
-		canvas
+		canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+		List<Figure> figures = dessin.getFigures();
+		for (int l = 0; l < figures.size(); l++) {
+			Point point = figures.get(l).getPoints().get(l);
+			for (int c = 0; c < figures.size(); c++) {
+				Point point2 = figures.get(c).getPoints().get(c);
+				canvas.getGraphicsContext2D().strokeLine(point.getX(), point.getY(), point2.getX(), point2.getY());
+			}
+		}
 	}
 
 }
