@@ -113,7 +113,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="16.0" text="X :" />
-                        <Label fx:id="nbX" prefHeight="17.0" prefWidth="27.0" text="0" />
+                        <Label fx:id="nbX" prefHeight="17.0" prefWidth="93.0" text="0" />
                      </children>
                   </HBox>
                </children>
@@ -121,7 +121,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Label prefHeight="17.0" prefWidth="16.0" text="Y :" />
-                  <Label fx:id="nbY" text="0" />
+                  <Label fx:id="nbY" prefHeight="17.0" prefWidth="101.0" text="0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
@@ -138,7 +138,7 @@
    <center>
       <Pane fx:id="interfaceCanva" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Canvas onMousePressed="#onMousePressed" onMouseDragged="#onMouseDragged" fx:id="canvas" height="355.0" width="516.0" />
+            <Canvas fx:id="canvas" height="355.0" onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" width="516.0" />
          </children>
       </Pane>
    </center>

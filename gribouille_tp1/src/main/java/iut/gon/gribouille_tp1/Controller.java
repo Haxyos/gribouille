@@ -11,6 +11,7 @@ import iut.gon.gribouille_tp1.modele.Trace;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -106,13 +107,19 @@ public class Controller implements Initializable{
 			}
 			
 		});
-	}
-	
-	public void onMouseMoved(MouseEvent evt) {
-		prevX = evt.getSceneX();
-		prevY = evt.getSceneY();
-		nbX.setText(prevX+"");
-		nbY.setText(prevY+"");
+		canvas.setOnMouseMoved(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				prevX = event.getSceneX();
+				prevY = event.getSceneY();
+				nbX.setText(prevX+"");
+				nbY.setText(prevY+"");
+				
+			}
+		
+			
+		});
 	}
 	
 	public void onMousePressed(MouseEvent evt) {
@@ -127,6 +134,8 @@ public class Controller implements Initializable{
     	trace.addPoint(evt.getX(), evt.getY());
     	this.prevX = evt.getX();
     	this.prevY = evt.getY();
+    	nbX.setText(prevX+"");
+		nbY.setText(prevY+"");
 	}
 	
 	public void redessine() {
