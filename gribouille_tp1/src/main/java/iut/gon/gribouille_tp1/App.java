@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import iut.gon.gribouille_tp1.modele.Dessin;
+
 /**
  * JavaFX App
  */
@@ -22,8 +24,9 @@ public class App extends Application {
     private double prevY;
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("CadreGribouille"), 640, 480);
-        Canvas dessin = (Canvas) scene.lookup("Canvas");
+    	Dessin dessin = new Dessin();
+    	stage.setTitle(dessin.getNomDuFichier());
+        scene = new Scene(loadFXML("CadreGribouille", dessin), 640, 480);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event-> {
@@ -32,25 +35,18 @@ public class App extends Application {
         		event.consume();
         	}
         });
-        dessin.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-        	this.prevX = event.getX();
-        	this.prevY = event.getY();
-        });
-        dessin.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-        	dessin.getGraphicsContext2D().strokeLine(prevX, prevY, event.getX(), event.getY());
-        	this.prevX = event.getX();
-        	this.prevY = event.getY();
-        });
-        
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    static void setRoot(String fxml, Dessin dessin) throws IOException {
+        scene.setRoot(loadFXML(fxml, dessin));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    private static Parent loadFXML(String fxml, Dessin dessin) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        Parent loader = fxmlLoader.load();
+        Controller c = fxmlLoader.getController();
+        c.setDessin(dessin);
+        return loader;
     }
 
     public static void main(String[] args) {

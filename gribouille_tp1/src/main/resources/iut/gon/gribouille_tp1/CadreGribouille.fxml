@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="638.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.gon.gribouille_tp1.Controller">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -71,32 +71,32 @@
    <right>
       <VBox prefHeight="353.0" prefWidth="124.0" BorderPane.alignment="CENTER">
          <children>
-            <ColorPicker prefHeight="36.0" prefWidth="100.0" />
+            <ColorPicker fx:id="colorPicker" prefHeight="36.0" prefWidth="100.0" />
             <TilePane prefHeight="322.0" prefWidth="117.0">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0">
+                  <Rectangle fx:id="carreRouge" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0">
                      <TilePane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </TilePane.margin>
                   </Rectangle>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00f027" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0">
+                  <Rectangle fx:id="carreVert" arcHeight="5.0" arcWidth="5.0" fill="#00f027" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0">
                      <TilePane.margin>
                         <Insets />
                      </TilePane.margin>
                   </Rectangle>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0213d1" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a6eaff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f85" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfe305b6" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreBleuFonce" arcHeight="5.0" arcWidth="5.0" fill="#0213d1" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreCyan" arcHeight="5.0" arcWidth="5.0" fill="#a6eaff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreMagenta" arcHeight="5.0" arcWidth="5.0" fill="#ff1f85" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreJaune" arcHeight="5.0" arcWidth="5.0" fill="#dfe305b6" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreNoir" arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreBlanc" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
                </children>
             </TilePane>
          </children>
       </VBox>
    </right>
    <bottom>
-      <GridPane prefHeight="22.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <GridPane id="GridPane" prefHeight="22.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -113,7 +113,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="16.0" text="X :" />
-                        <Label prefHeight="17.0" prefWidth="27.0" text="0" />
+                        <Label fx:id="nbX" prefHeight="17.0" prefWidth="93.0" text="0" />
                      </children>
                   </HBox>
                </children>
@@ -121,13 +121,13 @@
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Label prefHeight="17.0" prefWidth="16.0" text="Y :" />
-                  <Label text="0" />
+                  <Label fx:id="nbY" prefHeight="17.0" prefWidth="101.0" text="0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
                   <Label prefHeight="17.0" prefWidth="60.0" text="Epaisseur :" />
-                  <Label text="0" />
+                  <Label fx:id="nbEpaisseur" text="0" />
                </children>
             </HBox>
             <Label prefHeight="17.0" prefWidth="38.0" text="Outil" GridPane.columnIndex="3" />
@@ -136,9 +136,9 @@
       </GridPane>
    </bottom>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="interfaceCanva" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Canvas height="355.0" width="516.0" />
+            <Canvas fx:id="canvas" height="355.0" onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" width="516.0" />
          </children>
       </Pane>
    </center>
