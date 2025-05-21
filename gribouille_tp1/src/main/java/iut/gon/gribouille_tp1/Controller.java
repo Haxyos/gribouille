@@ -121,6 +121,8 @@ public class Controller implements Initializable{
     	this.prevX = evt.getX();
     	this.prevY = evt.getY();
     	trace.addPoint(prevX, prevY);
+    	dessin.addFigure(trace);
+    	
     	
 	}
 	
@@ -128,10 +130,11 @@ public class Controller implements Initializable{
 		canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		List<Figure> figures = dessin.getFigures();
 		for (int l = 0; l < figures.size(); l++) {
-			Point point = figures.get(l).getPoints().get(l);
-			for (int c = 0; c < figures.size(); c++) {
-				Point point2 = figures.get(c).getPoints().get(c);
-				canvas.getGraphicsContext2D().strokeLine(point.getX(), point.getY(), point2.getX(), point2.getY());
+			List<Point> point = figures.get(l).getPoints();
+			for (int c = 0; c < point.size()-1; c++) {
+				Point point1 = figures.get(c).getPoints().get(c);
+				Point point2 = figures.get(c).getPoints().get(c+1);
+				canvas.getGraphicsContext2D().strokeLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
 			}
 		}
 	}
