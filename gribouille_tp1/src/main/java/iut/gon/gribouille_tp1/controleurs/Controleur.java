@@ -23,6 +23,9 @@ public class Controleur implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		MenuController menusController = new MenuController();
+		StatutController statutController = new StatutController();
+		DessinController dessinController = new DessinController();
+		CouleursController couleursController = new CouleursController();
 	}
 }
