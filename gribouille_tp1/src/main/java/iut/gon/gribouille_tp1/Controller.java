@@ -8,6 +8,8 @@ import iut.gon.gribouille_tp1.modele.Dessin;
 import iut.gon.gribouille_tp1.modele.Figure;
 import iut.gon.gribouille_tp1.modele.Point;
 import iut.gon.gribouille_tp1.modele.Trace;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,8 +27,8 @@ import javafx.scene.shape.Rectangle;
 
 public class Controller implements Initializable{
 
-	private double prevX;
-	private double prevY;
+	private SimpleDoubleProperty prevX;
+	private SimpleDoubleProperty prevY;
 	private Trace trace;
 	private Dessin dessin;
 	
@@ -87,6 +89,8 @@ public class Controller implements Initializable{
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		this.prevX = new SimpleDoubleProperty();
+		this.prevY = new SimpleDoubleProperty();
 		canvas.heightProperty().bind(interfaceCanva.heightProperty());
 		canvas.widthProperty().bind(interfaceCanva.widthProperty());
 		canvas.heightProperty().addListener(new ChangeListener<Object>() {
@@ -111,10 +115,10 @@ public class Controller implements Initializable{
 
 			@Override
 			public void handle(MouseEvent event) {
-				prevX = event.getSceneX();
-				prevY = event.getSceneY();
-				nbX.setText(prevX+"");
-				nbY.setText(prevY+"");
+				prevX.set(event.getSceneX());
+				prevY.set(event.getSceneY());
+				nbX.setText(prevX.getValue()+"");
+				nbY.setText(prevY.getValue()+"");
 				
 			}
 		
@@ -123,19 +127,19 @@ public class Controller implements Initializable{
 	}
 	
 	public void onMousePressed(MouseEvent evt) {
-		this.prevX = evt.getX();
-    	this.prevY = evt.getY();
-    	this.trace = new Trace(1, "black", prevX, prevY);
+		this.prevX.set(evt.getX()); 
+    	this.prevY.set(evt.getY());
+    	this.trace = new Trace(1, "black", prevX.getValue(), prevY.getValue());
     	dessin.addFigure(trace);
 	}
 	
 	public void onMouseDragged(MouseEvent evt) {
-		canvas.getGraphicsContext2D().strokeLine(prevX, prevY, evt.getX(), evt.getY());
+		canvas.getGraphicsContext2D().strokeLine(prevX.getValue(), prevY.getValue(), evt.getX(), evt.getY());
     	trace.addPoint(evt.getX(), evt.getY());
-    	this.prevX = evt.getX();
-    	this.prevY = evt.getY();
-    	nbX.setText(prevX+"");
-		nbY.setText(prevY+"");
+    	this.prevX.set(evt.getX());
+    	this.prevY.set(evt.getY());
+    	nbX.setText(prevX.getValue()+"");
+		nbY.setText(prevY.getValue()+"");
 	}
 	
 	public void redessine() {

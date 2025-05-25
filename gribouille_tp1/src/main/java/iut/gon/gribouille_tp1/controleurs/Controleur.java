@@ -1,0 +1,28 @@
+package iut.gon.gribouille_tp1.controleurs;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import iut.gon.gribouille_tp1.modele.Dessin;
+import iut.gon.gribouille_tp1.modele.Figure;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.fxml.Initializable;
+import javafx.scene.paint.Color;
+
+public class Controleur implements Initializable{
+	public final Dessin dessin = new Dessin();
+	public Figure figure;
+	public final SimpleDoubleProperty precX = new SimpleDoubleProperty();
+	public final SimpleDoubleProperty precY = new SimpleDoubleProperty();
+	public final SimpleObjectProperty<Color> couleur = new SimpleObjectProperty<Color>(Color.BLACK);
+	public final SimpleIntegerProperty epaisseur = new SimpleIntegerProperty(1);
+	
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+	}
+}
