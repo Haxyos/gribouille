@@ -36,13 +36,9 @@ public class Controleur implements Initializable{
 	}
 
 	public boolean onQuitter(Stage stage) {
-		boolean conf;
-		stage.setOnCloseRequest(event-> {
-        	conf = Dialogues.confirmation(stage);
-        	if (!conf) {
-        		event.consume();
-        	}
-        });	
-		return conf;
+		if (Dialogues.confirmation(stage)) {
+			return true;
+		}
+		return false;
 	}
 }

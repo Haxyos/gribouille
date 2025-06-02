@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import iut.gon.gribouille_tp1.controleurs.Controleur;
 import iut.gon.gribouille_tp1.modele.Dessin;
 
 /**
@@ -25,11 +26,12 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
     	Dessin dessin = new Dessin();
+    	Controleur controleur = new Controleur();
     	stage.setTitle(dessin.getNomDuFichier());
         scene = new Scene(loadFXML("CadreGribouille", dessin), 640, 480);
         stage.setScene(scene);
         stage.show();
-        
+        this.onFerme(stage, controleur);
     }
 
     static void setRoot(String fxml, Dessin dessin) throws IOException {
@@ -44,6 +46,15 @@ public class App extends Application {
         return loader;
     }
 
+    public void onFerme(Stage stage, Controleur controleur) {
+    	stage.setOnCloseRequest(event-> {
+        	boolean conf = controleur.onQuitter(stage);
+        	if (!conf) {
+        		event.consume();
+        	}
+        });	
+    }
+    
     public static void main(String[] args) {
         launch();
     }
