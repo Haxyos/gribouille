@@ -2,6 +2,7 @@ package iut.gon.gribouille_tp1.controleurs;
 
 import java.lang.ModuleLayer.Controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleGroup;
 
@@ -13,9 +14,17 @@ public class MenuController {
     @FXML
     public ToggleGroup outil;
     
-    private Controller controller;
+    private Controleur controller;
 
-	public void setController(Controller controller) {
-		this.controller = controller;
+	public void setController(Controleur controleur) {
+		this.controller = controleur;
+	}
+	
+	public void onQuitte() {
+		
+		
+		if (controller.onQuitter(null)) {
+			Platform.exit();
+		}
 	}
 }

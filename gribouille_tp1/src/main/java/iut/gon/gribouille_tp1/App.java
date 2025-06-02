@@ -29,12 +29,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("CadreGribouille", dessin), 640, 480);
         stage.setScene(scene);
         stage.show();
-        stage.setOnCloseRequest(event-> {
-        	boolean conf = Dialogues.confirmation(stage);
-        	if (!conf) {
-        		event.consume();
-        	}
-        });
+        
     }
 
     static void setRoot(String fxml, Dessin dessin) throws IOException {

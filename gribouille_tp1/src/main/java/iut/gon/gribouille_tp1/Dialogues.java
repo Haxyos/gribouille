@@ -6,7 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Dialogues {
-	static boolean confirmation(Stage stage) {
+	public static boolean confirmation(Stage stage) {
 			      Alert sorti = new Alert(AlertType.CONFIRMATION);
 			      sorti.setContentText("Are you sure ?");
 			      sorti.getButtonTypes().add(ButtonType.YES);

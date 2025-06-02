@@ -35,9 +35,9 @@ public class CouleursController {
     @FXML
     public Rectangle carreBlanc;
 
-    private Controller controller;
+    private Controleur controller;
 
-	public void setController(Controller controller) {
-		this.controller = controller;
+	public void setController(Controleur controleur) {
+		this.controller = controleur;
 	}
 }

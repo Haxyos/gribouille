@@ -82,10 +82,6 @@ public class Controller implements Initializable{
 
     @FXML
     private Canvas canvas;
-
-    public void setDessin(Dessin dessin) {
-    	this.dessin = dessin;
-    }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -142,18 +138,7 @@ public class Controller implements Initializable{
 		nbY.setText(prevY.getValue()+"");
 	}
 	
-	public void redessine() {
-		canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-		List<Figure> figures = dessin.getFigures();
-		for (int l = 0; l < figures.size(); l++) {
-			List<Point> point = figures.get(l).getPoints();
-			for (int c = 0; c < point.size()-1; c++) {
-				Point point1 = point.get(c);
-				Point point2 = point.get(c+1);
-				canvas.getGraphicsContext2D().strokeLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
-			}
-		}
-	}
+	
 	
 
 }
