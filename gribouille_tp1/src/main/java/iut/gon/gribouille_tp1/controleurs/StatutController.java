@@ -1,6 +1,5 @@
 package iut.gon.gribouille_tp1.controleurs;
 
-import java.lang.ModuleLayer.Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,8 +10,6 @@ import javafx.scene.layout.BorderPane;
 
 public class StatutController implements Initializable{
 
-    @FXML
-    public BorderPane borderPane;
 
     @FXML
     public Label nbX;

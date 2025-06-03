@@ -1,12 +1,15 @@
 package iut.gon.gribouille_tp1.controleurs;
 
 import java.lang.ModuleLayer.Controller;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.shape.Rectangle;
 
-public class CouleursController {
+public class CouleursController implements Initializable{
     
     @FXML
     public ColorPicker colorPicker;
@@ -39,5 +42,11 @@ public class CouleursController {
 
 	public void setController(Controleur controleur) {
 		this.controller = controleur;
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
 	}
 }

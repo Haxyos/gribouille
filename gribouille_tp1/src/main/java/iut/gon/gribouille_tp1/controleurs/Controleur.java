@@ -40,15 +40,10 @@ public class Controleur implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		menusController = new MenuController();
-		statutController = new StatutController();
-		dessinController = new DessinController();
-		couleursController = new CouleursController();
 		menusController.setController(this);
-		statutController.setController(this);
 		dessinController.setController(this);
+		dessinController.setDessin(dessin);
 		couleursController.setController(this);
-		
 		dessinController.canvas.heightProperty().addListener(new ChangeListener<Object>() {
 
 			@Override
@@ -79,7 +74,8 @@ public class Controleur implements Initializable{
 	}
 	
 	public Dessin getDessin() {
-		return this.dessin;
+		return dessin;
+		
 	}
 	
 	public void redessine() {

@@ -54,7 +54,6 @@ public class DessinController implements Initializable{
 		canvas.getGraphicsContext2D().strokeLine(x1, y1, x2, y2);
 	}
 
-
 	
 	public void onMousePressed(MouseEvent evt) {
 		this.prevX.set(evt.getX()); 
@@ -72,20 +71,7 @@ public class DessinController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.prevX = new SimpleDoubleProperty();
-		this.prevY = new SimpleDoubleProperty();
-		canvas.heightProperty().bind(interfaceCanva.heightProperty());
-		canvas.widthProperty().bind(interfaceCanva.widthProperty());
-		canvas.setOnMouseMoved(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				prevX.set(event.getSceneX());
-				prevY.set(event.getSceneY());				
-			}
-		
-			
-		});
+		// TODO Auto-generated method stub
 		
 	}
 }
