@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 public class Controleur implements Initializable{
 	public final Dessin dessin = new Dessin();
 	public Figure figure;
+	public Outil outil = new OutilCrayon(this);
 	public final SimpleDoubleProperty precX = new SimpleDoubleProperty();
 	public final SimpleDoubleProperty precY = new SimpleDoubleProperty();
 	public final SimpleObjectProperty<Color> couleur = new SimpleObjectProperty<Color>(Color.BLACK);
@@ -34,7 +35,7 @@ public class Controleur implements Initializable{
 	@FXML
 	public CouleursController couleursController;
 	@FXML
-	public StatutController statutController;
+	public StatutController statusController;
 
 	
 	
@@ -44,6 +45,7 @@ public class Controleur implements Initializable{
 		dessinController.setController(this);
 		dessinController.setDessin(dessin);
 		couleursController.setController(this);
+		statusController.setController(this);
 		dessinController.canvas.heightProperty().addListener(new ChangeListener<Object>() {
 
 			@Override

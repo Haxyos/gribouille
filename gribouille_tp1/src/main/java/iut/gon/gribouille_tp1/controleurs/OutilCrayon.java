@@ -13,17 +13,19 @@ public class OutilCrayon extends Outil{
 		
 			controller.precX.set(x); 
 	    	controller.precY.set(y);
-	    	this.trace = new Trace(1, "black", x, y);
-	    	controller.dessin.addFigure(trace);
+	    	controller.figure = new Trace(1, "black", x, y);
+	    	controller.dessin.addFigure(controller.figure);
 		
 	}
 
 
 	public void onMouseDrag(double x, double y) {
-		canvas.getGraphicsContext2D().strokeLine(prevX.getValue(), prevY.getValue(), evt.getX(), evt.getY());
-    	trace.addPoint(evt.getX(), evt.getY());
-    	this.prevX.set(evt.getX());
-    	this.prevY.set(evt.getY());
+		controller.dessinController.trace(controller.precX.getValue(),controller.precY.getValue(), x, y);
+    	controller.figure.addPoint(x, y);
+    	controller.precX.set(x);
+    	controller.precY.set(y);
+    	controller.statusController.nbX.setText(controller.precX.getValue()+"");
+    	controller.statusController.nbY.setText(controller.precY.getValue()+"");
 		
 	}
 

@@ -56,19 +56,18 @@ public class DessinController implements Initializable{
 
 	
 	public void onMousePressed(MouseEvent evt) {
-		this.prevX.set(evt.getX()); 
-    	this.prevY.set(evt.getY());
-    	this.trace = new Trace(1, "black", prevX.getValue(), prevY.getValue());
-    	dessin.addFigure(trace);
+		controller.outil.onMousePress(evt.getX(), evt.getY());
 	}
 	
 	public void onMouseDragged(MouseEvent evt) {
-		canvas.getGraphicsContext2D().strokeLine(prevX.getValue(), prevY.getValue(), evt.getX(), evt.getY());
-    	trace.addPoint(evt.getX(), evt.getY());
-    	this.prevX.set(evt.getX());
-    	this.prevY.set(evt.getY());
+		controller.outil.onMouseDrag(evt.getX(), evt.getY());
 	}
 
+	public void onMouseMoved(MouseEvent evt) {
+		controller.statusController.nbX.setText(evt.getX()+"");
+		controller.statusController.nbY.setText(evt.getY()+"");
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
