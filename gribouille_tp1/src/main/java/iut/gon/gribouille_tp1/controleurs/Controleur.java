@@ -16,13 +16,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Controleur implements Initializable{
 	public final Dessin dessin = new Dessin();
 	public Figure figure;
-	public Outil outil = new OutilCrayon(this);
 	public final SimpleDoubleProperty precX = new SimpleDoubleProperty();
 	public final SimpleDoubleProperty precY = new SimpleDoubleProperty();
 	public final SimpleObjectProperty<Color> couleur = new SimpleObjectProperty<Color>(Color.BLACK);
@@ -36,8 +37,15 @@ public class Controleur implements Initializable{
 	public CouleursController couleursController;
 	@FXML
 	public StatutController statusController;
-
+	@FXML
+	public RadioMenuItem crayon;
+	@FXML
+	public RadioMenuItem etoile;
+	@FXML
+	public ToggleGroup outils;
 	
+	
+	public Outil outil = new OutilCrayon(this);
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -46,6 +54,9 @@ public class Controleur implements Initializable{
 		dessinController.setDessin(dessin);
 		couleursController.setController(this);
 		statusController.setController(this);
+		statusController.outil.setText("Crayon");
+		statusController.couleur.textProperty().bind(couleur.asString());
+		statusController.nbEpaisseur.textProperty().bind(epaisseur.asString());
 		dessinController.canvas.heightProperty().addListener(new ChangeListener<Object>() {
 
 			@Override

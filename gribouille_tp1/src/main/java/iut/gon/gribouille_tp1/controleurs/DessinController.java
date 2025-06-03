@@ -70,7 +70,8 @@ public class DessinController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		canvas.widthProperty().bind(interfaceCanva.widthProperty());
+		canvas.heightProperty().bind(interfaceCanva.heightProperty());
 		
 	}
 }

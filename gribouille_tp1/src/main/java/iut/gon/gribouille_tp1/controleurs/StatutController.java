@@ -19,6 +19,12 @@ public class StatutController implements Initializable{
 
     @FXML
     public Label nbEpaisseur;
+    
+    @FXML
+    public Label outil;
+    
+    @FXML
+    public Label couleur;
 
     private Controleur controller;
 
