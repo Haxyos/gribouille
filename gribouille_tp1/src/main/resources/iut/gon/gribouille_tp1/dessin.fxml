@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?> 
  
- <Pane fx:id="interfaceCanva" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" fx:controller="iut.gon.gribouille_tp1.controleurs.DessinController">
+ <Pane fx:id="interfaceCanva" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" fx:controller="iut.gon.gribouille_tp1.controleurs.DessinController" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
          <children>
             <Canvas fx:id="canvas" height="355.0" onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" width="516.0" />
          </children>

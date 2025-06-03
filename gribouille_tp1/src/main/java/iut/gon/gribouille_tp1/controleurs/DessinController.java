@@ -19,7 +19,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class DessinController {
+public class DessinController implements Initializable{
 
 	private SimpleDoubleProperty prevX;
 	private SimpleDoubleProperty prevY;
@@ -45,18 +45,6 @@ public class DessinController {
 	
 	
 	
-	public void redessine() {
-		canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-		List<Figure> figures = dessin.getFigures();
-		for (int l = 0; l < figures.size(); l++) {
-			List<Point> point = figures.get(l).getPoints();
-			for (int c = 0; c < point.size()-1; c++) {
-				Point point1 = point.get(c);
-				Point point2 = point.get(c+1);
-				canvas.getGraphicsContext2D().strokeLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
-			}
-		}
-	}
 	
 	public void efface() {
 		canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -67,29 +55,27 @@ public class DessinController {
 	}
 
 
-	public DessinController(){
+	
+	public void onMousePressed(MouseEvent evt) {
+		this.prevX.set(evt.getX()); 
+    	this.prevY.set(evt.getY());
+    	this.trace = new Trace(1, "black", prevX.getValue(), prevY.getValue());
+    	dessin.addFigure(trace);
+	}
+	
+	public void onMouseDragged(MouseEvent evt) {
+		canvas.getGraphicsContext2D().strokeLine(prevX.getValue(), prevY.getValue(), evt.getX(), evt.getY());
+    	trace.addPoint(evt.getX(), evt.getY());
+    	this.prevX.set(evt.getX());
+    	this.prevY.set(evt.getY());
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		this.prevX = new SimpleDoubleProperty();
 		this.prevY = new SimpleDoubleProperty();
 		canvas.heightProperty().bind(interfaceCanva.heightProperty());
 		canvas.widthProperty().bind(interfaceCanva.widthProperty());
-		canvas.heightProperty().addListener(new ChangeListener<Object>() {
-
-			@Override
-			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				redessine();
-				
-			}
-			
-		});
-		canvas.widthProperty().addListener(new ChangeListener<Object>() {
-
-			@Override
-			public void changed(ObservableValue<? extends Object> observable, Object oldValue, Object newValue) {
-				redessine();
-				
-			}
-			
-		});
 		canvas.setOnMouseMoved(new EventHandler<MouseEvent>() {
 
 			@Override

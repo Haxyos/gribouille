@@ -6,4 +6,5 @@ module iut.gon.gribouille_tp1 {
 
     opens iut.gon.gribouille_tp1 to javafx.fxml;
     exports iut.gon.gribouille_tp1;
+    exports iut.gon.gribouille_tp1.controleurs;
 }

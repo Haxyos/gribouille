@@ -87,17 +87,6 @@ public class Controller implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		this.prevX = new SimpleDoubleProperty();
 		this.prevY = new SimpleDoubleProperty();
-		canvas.heightProperty().bind(interfaceCanva.heightProperty());
-		canvas.widthProperty().bind(interfaceCanva.widthProperty());
-		canvas.heightProperty().addListener(new ChangeListener<Object>() {
-
-			@Override
-			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				redessine();
-				
-			}
-			
-		});
 		canvas.widthProperty().addListener(new ChangeListener<Object>() {
 
 			@Override

@@ -21,8 +21,6 @@ public class MenuController {
 	}
 	
 	public void onQuitte() {
-		
-		
 		if (controller.onQuitter(null)) {
 			Platform.exit();
 		}
