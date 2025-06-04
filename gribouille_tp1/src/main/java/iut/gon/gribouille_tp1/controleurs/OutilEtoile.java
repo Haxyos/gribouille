@@ -18,7 +18,7 @@ public class OutilEtoile extends Outil{
 		x1 = x;
 		y1 = y;
     	controller.precY.set(y);
-    	controller.figure = new Trace(1, "black", x, y);
+    	controller.figure = new Trace(controller.epaisseur.getValue(), controller.couleur.get()+"", x, y);
     	controller.dessin.addFigure(controller.figure);
 		
 	}

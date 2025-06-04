@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class DessinController implements Initializable{
 
@@ -34,8 +35,9 @@ public class DessinController implements Initializable{
 		this.controller = controleur;
 	}
 	
-
-	
+	public void setCouleur(Color color) {
+		canvas.getGraphicsContext2D().setStroke(color);
+	}
 	
 	
 	

@@ -20,6 +20,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import iut.gon.gribouille_tp1.modele.Etoile;
 
@@ -99,11 +100,13 @@ public class Controleur implements Initializable{
 		for (Figure f : dessin.getFigures()) {
 			for (int c = 1; c < f.getPoints().size(); c++) {
 				dessinController.canvas.getGraphicsContext2D().setLineWidth(f.getEpaisseur());
+				dessinController.canvas.getGraphicsContext2D().setStroke(Color.web(f.getCouleur()));
 				if (f instanceof Trace) {
 					dessinController.canvas.getGraphicsContext2D().strokeLine(f.getPoints().get(c-1).getX(), f.getPoints().get(c-1).getY(), f.getPoints().get(c).getX(), f.getPoints().get(c).getY());
 				}
 				else if(f instanceof Etoile) {
-					dessinController.canvas.getGraphicsContext2D().strokeLine(f.getPoints().get(0).getX(), f.getPoints().get(0).getY(), f.getPoints().get(c).getX(), f.getPoints().get(c).getY());
+					Etoile e = (Etoile)f;
+					dessinController.canvas.getGraphicsContext2D().strokeLine(e.getCentre().getX(),e.getCentre().getY(), f.getPoints().get(c).getX(), f.getPoints().get(c).getY());
 				}
 				
 			}
@@ -125,4 +128,8 @@ public class Controleur implements Initializable{
 		dessinController.setEpaisseur(epaisseur);
 	}
 	
+	public void setCouleur(Color color) {
+		this.couleur.set(color);
+		dessinController.setCouleur(color);
+	}
 }
