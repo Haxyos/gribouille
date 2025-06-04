@@ -50,5 +50,13 @@ public class MenuController implements Initializable{
 				}
 			}
 		});
+		
+		Epaisseur.selectedToggleProperty().addListener((observableValue, oldValue, newValue) -> {
+			if (newValue != null) {
+				String nb = ((RadioMenuItem) newValue).getText();
+				controller.epaisseur.set(Integer.parseInt(nb));
+				controller.setEpaisseur(Integer.parseInt(nb));
+			}
+		});
 	}
 }

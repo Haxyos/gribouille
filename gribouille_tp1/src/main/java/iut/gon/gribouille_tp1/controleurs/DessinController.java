@@ -21,10 +21,6 @@ import javafx.scene.layout.Pane;
 
 public class DessinController implements Initializable{
 
-	private SimpleDoubleProperty prevX;
-	private SimpleDoubleProperty prevY;
-	private Trace trace;
-	private Dessin dessin;
 	
     @FXML
     public Pane interfaceCanva;
@@ -38,9 +34,6 @@ public class DessinController implements Initializable{
 		this.controller = controleur;
 	}
 	
-	public void setDessin(Dessin dessin) {
-    	this.dessin = dessin;
-    }
 
 	
 	
@@ -66,6 +59,10 @@ public class DessinController implements Initializable{
 	public void onMouseMoved(MouseEvent evt) {
 		controller.statusController.nbX.setText(evt.getX()+"");
 		controller.statusController.nbY.setText(evt.getY()+"");
+	}
+	
+	public void setEpaisseur(int epaisseur) {
+		canvas.getGraphicsContext2D().setLineWidth(epaisseur);
 	}
 	
 	@Override

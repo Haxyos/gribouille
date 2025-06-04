@@ -8,6 +8,7 @@ import iut.gon.gribouille_tp1.Dialogues;
 import iut.gon.gribouille_tp1.modele.Dessin;
 import iut.gon.gribouille_tp1.modele.Figure;
 import iut.gon.gribouille_tp1.modele.Point;
+import iut.gon.gribouille_tp1.modele.Trace;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -20,6 +21,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import iut.gon.gribouille_tp1.modele.Etoile;
 
 public class Controleur implements Initializable{
 	public final Dessin dessin = new Dessin();
@@ -42,6 +44,8 @@ public class Controleur implements Initializable{
 	@FXML
 	public RadioMenuItem Etoile;
 	@FXML
+	public ToggleGroup Epaisseur;
+	@FXML
 	public ToggleGroup outils;
 	
 	
@@ -51,7 +55,6 @@ public class Controleur implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		menusController.setController(this);
 		dessinController.setController(this);
-		dessinController.setDessin(dessin);
 		couleursController.setController(this);
 		statusController.setController(this);
 		statusController.outil.setText("Crayon");
@@ -93,13 +96,16 @@ public class Controleur implements Initializable{
 	
 	public void redessine() {
 		dessinController.canvas.getGraphicsContext2D().clearRect(0, 0, dessinController.canvas.getWidth(), dessinController.canvas.getHeight());
-		List<Figure> figures = dessin.getFigures();
-		for (int l = 0; l < figures.size(); l++) {
-			List<Point> point = figures.get(l).getPoints();
-			for (int c = 0; c < point.size()-1; c++) {
-				Point point1 = point.get(c);
-				Point point2 = point.get(c+1);
-				dessinController.canvas.getGraphicsContext2D().strokeLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
+		for (Figure f : dessin.getFigures()) {
+			for (int c = 1; c < f.getPoints().size(); c++) {
+				dessinController.canvas.getGraphicsContext2D().setLineWidth(f.getEpaisseur());
+				if (f instanceof Trace) {
+					dessinController.canvas.getGraphicsContext2D().strokeLine(f.getPoints().get(c-1).getX(), f.getPoints().get(c-1).getY(), f.getPoints().get(c).getX(), f.getPoints().get(c).getY());
+				}
+				else if(f instanceof Etoile) {
+					dessinController.canvas.getGraphicsContext2D().strokeLine(f.getPoints().get(0).getX(), f.getPoints().get(0).getY(), f.getPoints().get(c).getX(), f.getPoints().get(c).getY());
+				}
+				
 			}
 		}
 	}
@@ -114,4 +120,9 @@ public class Controleur implements Initializable{
 		outil = new OutilEtoile(this);
 	}
 
+	public void setEpaisseur(int epaisseur) {
+		this.epaisseur.set(epaisseur);
+		dessinController.setEpaisseur(epaisseur);
+	}
+	
 }
