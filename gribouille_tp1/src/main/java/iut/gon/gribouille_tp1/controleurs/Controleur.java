@@ -132,4 +132,71 @@ public class Controleur implements Initializable{
 		this.couleur.set(color);
 		dessinController.setCouleur(color);
 	}
+	
+	public void onKeyPressed(String cle) {
+    	switch (cle.toLowerCase()) {
+    	case "r":
+    		this.setCouleur(Color.RED);
+    		figure = figure.changeCouleur(couleur.get().toString());
+    		dessin.addFigure(figure);
+    		break;
+    	case "v":
+    		this.setCouleur(Color.GREEN);
+    		figure = figure.changeCouleur(couleur.get().toString());
+    		dessin.addFigure(figure);
+    		break;
+    	case "b":
+    		this.setCouleur(Color.BLUE);
+    		figure = figure.changeCouleur(couleur.get().toString());
+    		dessin.addFigure(figure);
+    		break;
+    	case "j":
+    		this.setCouleur(Color.YELLOW);
+    		figure = figure.changeCouleur(couleur.get().toString());
+    		dessin.addFigure(figure);
+    		break;
+    	case "o":
+    		this.setCouleur(Color.PINK);
+    		figure = figure.changeCouleur(couleur.get().toString());
+    		dessin.addFigure(figure);
+    		break;
+    	case "n":
+    		this.setCouleur(Color.BLACK);
+    		figure = figure.changeCouleur(couleur.get().toString());
+    		dessin.addFigure(figure);
+    		break;
+    	case "w":
+    		this.setCouleur(Color.WHITE);
+    		figure = figure.changeCouleur(couleur.get().toString());
+    		dessin.addFigure(figure);
+    		break;
+    	case "c":
+    		this.onCrayon();
+    		break;
+    	case "e":
+    		
+    		this.onEtoile();
+    		break;
+    	case "+":
+    		this.setEpaisseur(this.epaisseur.getValue() + 1);
+    		figure = figure.changeEpaisseur(epaisseur.getValue());
+    		dessin.addFigure(figure);
+    		break;
+    	case "-":
+    		if(this.epaisseur.getValue() > 1) {
+    			this.setEpaisseur(this.epaisseur.getValue() - 1);
+    			figure = figure.changeEpaisseur(epaisseur.getValue());
+    			dessin.addFigure(figure);
+        		break;
+    		}
+    		else {
+    			break;
+    		}
+    		
+    	}
+    	
+    		
+    	
+    }
+	
 }
