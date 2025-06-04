@@ -38,9 +38,9 @@ public class Controleur implements Initializable{
 	@FXML
 	public StatutController statusController;
 	@FXML
-	public RadioMenuItem crayon;
+	public RadioMenuItem Crayon;
 	@FXML
-	public RadioMenuItem etoile;
+	public RadioMenuItem Etoile;
 	@FXML
 	public ToggleGroup outils;
 	
@@ -102,6 +102,16 @@ public class Controleur implements Initializable{
 				dessinController.canvas.getGraphicsContext2D().strokeLine(point1.getX(), point1.getY(), point2.getX(), point2.getY());
 			}
 		}
+	}
+	
+	public void onCrayon() {
+		statusController.outil.setText("Crayon");
+		outil = new OutilCrayon(this);
+	}
+	
+	public void onEtoile() {
+		statusController.outil.setText("Etoile");
+		outil = new OutilEtoile(this);
 	}
 
 }

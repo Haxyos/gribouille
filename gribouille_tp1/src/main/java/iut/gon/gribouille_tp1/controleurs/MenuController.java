@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 
 public class MenuController implements Initializable{
@@ -15,7 +16,13 @@ public class MenuController implements Initializable{
     public ToggleGroup Epaisseur;
 
     @FXML
-    public ToggleGroup outil;
+    public ToggleGroup outils;
+    
+    @FXML
+    public RadioMenuItem Crayon;
+    
+    @FXML
+    public RadioMenuItem Etoile;
     
     private Controleur controller;
 
@@ -31,7 +38,17 @@ public class MenuController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		outils.selectedToggleProperty().addListener((observableValue, oldValue, newValue) -> {
+			if (newValue != null) {
+				String nom = ((RadioMenuItem) newValue).getId();
+				
+				if(nom.equals("Etoile")) {
+					controller.onEtoile();
+				}
+				else if(nom.equals("Crayon")) {
+					controller.onCrayon();
+				}
+			}
+		});
 	}
 }
