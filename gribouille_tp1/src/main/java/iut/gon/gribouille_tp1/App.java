@@ -1,13 +1,16 @@
 package iut.gon.gribouille_tp1;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,23 +28,24 @@ public class App extends Application {
     private double prevY;
     @Override
     public void start(Stage stage) throws IOException {
-    	Controleur controleur = new Controleur();
+    	FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("CadreGribouille.fxml"));
+        Parent loader = fxmlLoader.load();
+    	Controleur controleur = fxmlLoader.getController();
     	Dessin dessin = controleur.getDessin();
     	stage.setTitle(dessin.getNomDuFichier());
-        scene = new Scene(loadFXML("CadreGribouille", dessin), 640, 480);
+        scene = new Scene(loader, 640, 480);
         stage.setScene(scene);
         stage.show();
+        stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+        
+			@Override
+			public void handle(KeyEvent event) {
+				controleur.onKeyPressed(event.getText());
+				
+			}
+        	
+        });
         this.onFerme(stage, controleur);
-    }
-
-    static void setRoot(String fxml, Dessin dessin) throws IOException {
-        scene.setRoot(loadFXML(fxml, dessin));
-    }
-
-    private static Parent loadFXML(String fxml, Dessin dessin) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        Parent loader = fxmlLoader.load();
-        return loader;
     }
 
     public void onFerme(Stage stage, Controleur controleur) {
@@ -56,5 +60,7 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+    
+    
 
 }
