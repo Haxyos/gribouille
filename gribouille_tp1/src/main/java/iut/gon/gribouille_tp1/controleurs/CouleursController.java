@@ -77,6 +77,6 @@ public class CouleursController implements Initializable{
 						rectangleChoisi.setStrokeWidth(5);
 					}
 		});
-		
+
 	}
 }

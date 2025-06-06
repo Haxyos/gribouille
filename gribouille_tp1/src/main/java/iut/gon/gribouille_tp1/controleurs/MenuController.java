@@ -7,11 +7,18 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 
 public class MenuController implements Initializable{
 
+	@FXML
+	public MenuItem Charge;
+	
+	@FXML
+	public MenuItem Sauvegarde;
+	
     @FXML
     public ToggleGroup Epaisseur;
 
@@ -58,5 +65,21 @@ public class MenuController implements Initializable{
 				controller.setEpaisseur(Integer.parseInt(nb));
 			}
 		});
+		
+		Sauvegarde.setOnAction(event -> {
+			controller.sauvegarde();
+		});
+		
+		Charge.setOnAction(event -> {
+			controller.charge();
+		});
+		
+		
 	}
+	@FXML
+    private void quitte() {
+        if (controller.onQuitter(controller)) {
+            Platform.exit();
+        }
+    }
 }

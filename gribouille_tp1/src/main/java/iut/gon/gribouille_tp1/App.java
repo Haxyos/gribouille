@@ -50,9 +50,10 @@ public class App extends Application {
 
     public void onFerme(Stage stage, Controleur controleur) {
     	stage.setOnCloseRequest(event-> {
-        	boolean conf = controleur.onQuitter(stage);
-        	if (!conf) {
-        		event.consume();
+        	if (controleur.dessin.estModifieProperty().get()) {
+        		if(!controleur.onQuitter(controleur)) {
+        			event.consume();
+        		}
         	}
         });	
     }

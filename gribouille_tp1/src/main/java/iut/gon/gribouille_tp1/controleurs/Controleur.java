@@ -1,5 +1,6 @@
 package iut.gon.gribouille_tp1.controleurs;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,6 +22,7 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import iut.gon.gribouille_tp1.modele.Etoile;
 
@@ -83,8 +85,8 @@ public class Controleur implements Initializable{
 		
 	}
 
-	public boolean onQuitter(Stage stage) {
-		if (Dialogues.confirmation(stage)) {
+	public boolean onQuitter(Controleur controller) {
+		if (Dialogues.confirmation(controller)) {
 			return true;
 		}
 		return false;
@@ -198,5 +200,38 @@ public class Controleur implements Initializable{
     		
     	
     }
+
+	public boolean sauvegarde() {
+		FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Sauvegarder le dessin");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Dessin", "*.grb")
+        );
+        Stage stage = (Stage) dessinController.canvas.getScene().getWindow();
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+            dessin.sauveSous(file.getAbsolutePath());
+            dessin.setNomDuFichier("Gribouille - " + file.getName());
+            return true;
+        }
+        return false;
+		
+	}
+
+	public void charge() {
+		FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Charger un dessin");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("dessin", "*.grb")
+        );
+        Stage stage = (Stage) dessinController.canvas.getScene().getWindow();
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            dessin.charge(file.getAbsolutePath());
+            dessin.setNomDuFichier(file.getName());
+            redessine();
+        }
+		
+	}
 	
 }
