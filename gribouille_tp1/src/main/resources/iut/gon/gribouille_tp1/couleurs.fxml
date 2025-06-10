@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?> 
+ 
+  <VBox fx:id="Vbox" prefHeight="353.0" prefWidth="124.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="iut.gon.gribouille_tp1.controleurs.CouleursController">
+         <children>
+            <ColorPicker fx:id="colorPicker" prefHeight="36.0" prefWidth="100.0" />
+            <TilePane fx:id="tilePane" prefHeight="322.0" prefWidth="117.0">
+               <children>
+                  <Rectangle fx:id="carreRouge" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0">
+                     <TilePane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </TilePane.margin>
+                  </Rectangle>
+                  <Rectangle fx:id="carreVert" arcHeight="5.0" arcWidth="5.0" fill="#00f027" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0">
+                     <TilePane.margin>
+                        <Insets />
+                     </TilePane.margin>
+                  </Rectangle>
+                  <Rectangle fx:id="carreBleuFonce" arcHeight="5.0" arcWidth="5.0" fill="#0213d1" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreCyan" arcHeight="5.0" arcWidth="5.0" fill="#a6eaff" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreMagenta" arcHeight="5.0" arcWidth="5.0" fill="#ff1f85" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreJaune" arcHeight="5.0" arcWidth="5.0" fill="#dfe305b6" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreNoir" arcHeight="5.0" arcWidth="5.0" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+                  <Rectangle fx:id="carreBlanc" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="50.0" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+               </children>
+            </TilePane>
+         </children>
+      </VBox>
