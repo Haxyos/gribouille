@@ -17,6 +17,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
@@ -174,6 +175,7 @@ public class Controleur implements Initializable{
     		break;
     	case "c":
     		this.onCrayon();
+    		
     		break;
     	case "e":
     		
@@ -181,6 +183,7 @@ public class Controleur implements Initializable{
     		break;
     	case "+":
     		this.setEpaisseur(this.epaisseur.getValue() + 1);
+    		
     		figure = figure.changeEpaisseur(epaisseur.getValue());
     		dessin.addFigure(figure);
     		break;
